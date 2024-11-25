@@ -8,8 +8,6 @@ import { db } from "@/utils/utilities"
 import Link from "next/link"
 
 
-
-
 export default async function PostsPage({ searchParams }) {
 
     const posts = (await db.query(`SELECT * FROM posts`)).rows
