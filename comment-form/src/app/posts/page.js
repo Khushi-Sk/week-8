@@ -12,7 +12,8 @@ export default async function PostsPage({ searchParams }) {
 
     const posts = (await db.query(`SELECT * FROM posts`)).rows
 
-    if (searchParams.sort === "desc") {
+    const sort = (await searchParams).sort
+    if (sort === "desc") {
         posts.reverse()
     }
 
@@ -29,9 +30,9 @@ export default async function PostsPage({ searchParams }) {
                 Tweeter (Elon Parody <img width={50} src="https://em-content.zobj.net/source/apple/325/winking-face_1f609.png" />)</h1>
                 {posts.map((post) => {
                     return(
-                        <>
-                        <div className="bg-neutral-200 w-96 sm:w-[600px] flex justify-center items-center flex-col">
-                            <div className="bg-slate-50 w-96 h-40 text-black rounded border-neutral-300 border " key={post.id}>
+                        
+                        <div className="bg-neutral-200 w-96 sm:w-[600px] flex justify-center items-center flex-col" key={post.id}>
+                            <div className="bg-slate-50 w-96 h-40 text-black rounded border-neutral-300 border " >
                                 
                                     <div className="flex flex-row">
                                         <img width={70} alt="profile picture" src={post.profile_pic}/>
@@ -59,7 +60,6 @@ export default async function PostsPage({ searchParams }) {
                                 
                             </div>
                         </div>
-                        </>
                     )
                 })}
             </div>
